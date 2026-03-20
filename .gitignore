@@ -1,0 +1,9 @@
+data/filtered/
+data/raw/
+data/answers/
+results/txt/
+phi2-cache/
+phi2-finetuned/
+__pycache__/
+*.jsonl
+*.json

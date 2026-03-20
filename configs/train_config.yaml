@@ -1,0 +1,33 @@
+model:
+  base_model: "microsoft/phi-2"
+  cache_dir: "./phi2-cache"
+
+lora:
+  r: 16  # Corrigé : le code utilisait 16, pas 32
+  alpha: 32
+  dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "dense", "fc1", "fc2"]
+
+training:
+  per_device_train_batch_size: 4  # Corrigé d'après BATCH_SIZE = 4
+  gradient_accumulation_steps: 4  # Corrigé d'après GRAD_ACC = 4
+  learning_rate: 2.0e-4
+  num_train_epochs: 1
+  max_seq_length: 512
+  logging_steps: 10
+  save_steps: 200
+  fp16: true
+  optim: "paged_adamw_32bit"
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.03
+  max_grad_norm: 1.0
+  group_by_length: true
+  output_dir: "./phi2-finetuned"
+  overwrite_output_dir: true
+  save_total_limit: 2
+
+dataset:
+  path: "./data/filtered"
+  chunk_index: 0  # index du chunk à utiliser (0 à 11)
+  test_size: 0.2
+  seed: 42
