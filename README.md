@@ -65,10 +65,10 @@ Les performances ont été mesurées via la métrique Pass@1 sur le benchmark DS
 Le fine-tuning ciblé a permis l'émergence de capacités non nulles sur des bibliothèques tierces (Scipy, Sklearn), mais le score global stagne par rapport au modèle de base (10.2% vs 10.0%).
 
 Cette stagnation s'explique par un biais d'alignement majeur (Distribution Shift) entre la phase d'apprentissage et l'évaluation :
-    
-    **1. L'entraînement (Causal LM) :** Le modèle a ingéré du code source brut. Ses poids ont été ajustés pour la prédiction stricte du token suivant (auto-complétion de scripts).
-    
-    **2. L'évaluation (Instruction-following) :** DS-1000 interroge les modèles à l'aide d'instructions complexes en langage naturel (ex: "Write a python function to...").
+
+**1. L'entraînement (Causal LM) :** Le modèle a ingéré du code source brut. Ses poids ont été ajustés pour la prédiction stricte du token suivant (auto-complétion de scripts).
+
+**2. L'évaluation (Instruction-following) :** DS-1000 interroge les modèles à l'aide d'instructions complexes en langage naturel (ex: "Write a python function to...").
 
 Le modèle n'ayant bénéficié d'aucune phase d'Instruction Tuning, la dégradation de certaines métriques spécifiques (comme la baisse sur *matplotlib*) illustre une rupture de distribution plutôt qu'une régression syntaxique : le modèle échoue à interpréter la structure de la requête, masquant ainsi ses réelles capacités de génération de code.
 
