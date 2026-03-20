@@ -3,14 +3,14 @@ model:
   cache_dir: "./phi2-cache"
 
 lora:
-  r: 16  # Corrigé : le code utilisait 16, pas 32
+  r: 16
   alpha: 32
   dropout: 0.05
   target_modules: ["q_proj", "k_proj", "v_proj", "dense", "fc1", "fc2"]
 
 training:
-  per_device_train_batch_size: 4  # Corrigé d'après BATCH_SIZE = 4
-  gradient_accumulation_steps: 4  # Corrigé d'après GRAD_ACC = 4
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
   learning_rate: 2.0e-4
   num_train_epochs: 1
   max_seq_length: 512
